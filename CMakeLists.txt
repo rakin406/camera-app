@@ -9,8 +9,8 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-# add_executable( JustChatClient src/client/main.cpp )
-# target_include_directories(JustChatClient PRIVATE include)
+add_executable(${PROJECT_NAME} src/main.cpp)
+target_include_directories(${PROJECT_NAME} PRIVATE include)
 # target_link_libraries(JustChatServer PRIVATE asio)
 
 # MSVC flags
@@ -29,11 +29,14 @@ set(GCC_DEBUG_FLAGS
 set(GCC_RELEASE_FLAGS -Wall -Wextra $<$<COMPILE_LANGUAGE:CXX>:-Wold-style-cast>
                       -Wno-unused-parameter -O3)
 
-# if (MSVC) target_compile_options(JustChatServer PRIVATE
-# "$<$<CONFIG:DEBUG>:SHELL:${MSVC_DEBUG_FLAGS}>")
-# target_compile_options(JustChatServer PRIVATE
-# "$<$<CONFIG:RELEASE>:SHELL:${MSVC_RELEASE_FLAGS}>") else()
-# target_compile_options(JustChatServer PRIVATE
-# "$<$<CONFIG:DEBUG>:SHELL:${GCC_DEBUG_FLAGS}>")
-# target_compile_options(JustChatServer PRIVATE
-# "$<$<CONFIG:RELEASE>:SHELL:${GCC_RELEASE_FLAGS}>") endif()
+if(MSVC)
+  target_compile_options(${PROJECT_NAME}
+                         PRIVATE "$<$<CONFIG:DEBUG>:SHELL:${MSVC_DEBUG_FLAGS}>")
+  target_compile_options(
+    ${PROJECT_NAME} PRIVATE "$<$<CONFIG:RELEASE>:SHELL:${MSVC_RELEASE_FLAGS}>")
+else()
+  target_compile_options(${PROJECT_NAME}
+                         PRIVATE "$<$<CONFIG:DEBUG>:SHELL:${GCC_DEBUG_FLAGS}>")
+  target_compile_options(
+    ${PROJECT_NAME} PRIVATE "$<$<CONFIG:RELEASE>:SHELL:${GCC_RELEASE_FLAGS}>")
+endif()

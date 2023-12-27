@@ -9,9 +9,12 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-add_executable(${PROJECT_NAME} src/app/main.cpp)
+find_package(Qt6 REQUIRED COMPONENTS Core)
+qt_standard_project_setup()
+
+qt_add_executable(${PROJECT_NAME} src/app/main.cpp)
 target_include_directories(${PROJECT_NAME} PRIVATE include)
-# target_link_libraries(JustChatServer PRIVATE asio)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Core)
 
 # MSVC flags
 set(MSVC_DEBUG_FLAGS /W4 /Wall /WX /DEBUG /Z7)

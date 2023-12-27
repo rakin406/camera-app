@@ -1,6 +1,7 @@
-#include <iostream>
+#include <qt6/QtGui/QGuiApplication>
 
-int main() {
-    std::cout << "Hello World\n";
-    return 0;
+int main(int argc, char* argv[]) {
+    QGuiApplication app(argc, argv);
+
+    return app.exec();
 }

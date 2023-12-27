@@ -9,12 +9,15 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-find_package(Qt6 REQUIRED COMPONENTS Core Quick)
+# Generate compile_commands.json
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+find_package(Qt6 REQUIRED COMPONENTS Core Gui Quick)
 qt_standard_project_setup()
 
 qt_add_executable(${PROJECT_NAME} src/app/main.cpp)
 target_include_directories(${PROJECT_NAME} PRIVATE include)
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Core Qt6::Quick)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Core Qt6::Gui Qt6::Quick)
 
 # MSVC flags
 set(MSVC_DEBUG_FLAGS /W4 /Wall /WX /DEBUG /Z7)

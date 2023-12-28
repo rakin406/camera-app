@@ -12,31 +12,29 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 # Generate compile_commands.json
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+# set(HEADERS
+# )
+
 set(SOURCES
     src/app/main.cpp
 )
-
-# set(HEADERS
-# )
 
 set(FORMS
     src/views/window.ui
 )
 
-set(QT_MODULES
-    Qt6::Core
-    Qt6::Gui
-    Qt6::Widgets
-)
-
-find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets)
+find_package(Qt6 REQUIRED COMPONENTS Multimedia MultimediaWidgets Widgets)
 qt_standard_project_setup()
 
 qt_add_executable(${PROJECT_NAME} ${SOURCES} ${FORMS})
 
 target_include_directories(${PROJECT_NAME} PRIVATE include)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE ${QT_MODULES})
+target_link_libraries(${PROJECT_NAME} PRIVATE
+    Qt6::Multimedia
+    Qt::MultimediaWidgets
+    Qt6::Widgets
+)
 
 # MSVC flags
 set(MSVC_DEBUG_FLAGS /W4 /Wall /WX /DEBUG /Z7)

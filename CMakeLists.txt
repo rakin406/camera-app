@@ -15,15 +15,12 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 find_package(Qt6 REQUIRED COMPONENTS Gui Quick)
 qt_standard_project_setup()
 
-qt_add_executable(${PROJECT_NAME}
-    src/app/main.cpp
-)
+qt_add_executable(${PROJECT_NAME} src/app/main.cpp)
 
 qt_add_qml_module(${PROJECT_NAME}
-    URI src.views
-    VERSION 1.0
-    QML_FILES
-        src/views/app.qml
+    URI       src.views
+    VERSION   1.0
+    QML_FILES src/views/app.qml
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE include)
@@ -41,7 +38,8 @@ set(GCC_DEBUG_FLAGS
     $<$<COMPILE_LANGUAGE:CXX>:-Wold-style-cast>
     -Wno-unused-parameter
     -g3
-    -ggdb)
+    -ggdb
+)
 set(GCC_RELEASE_FLAGS -Wall -Wextra $<$<COMPILE_LANGUAGE:CXX>:-Wold-style-cast>
                       -Wno-unused-parameter -O3)
 

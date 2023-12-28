@@ -12,8 +12,10 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 # Generate compile_commands.json
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-# set(HEADERS
-# )
+set(HEADERS
+    include/api/controllers/cameraController.h
+    include/api/models/camera.h
+)
 
 set(SOURCES
     src/app/main.cpp
@@ -26,7 +28,7 @@ set(FORMS
 find_package(Qt6 REQUIRED COMPONENTS Multimedia MultimediaWidgets Widgets)
 qt_standard_project_setup()
 
-qt_add_executable(${PROJECT_NAME} ${SOURCES} ${FORMS})
+qt_add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS} ${FORMS})
 
 target_include_directories(${PROJECT_NAME} PRIVATE include)
 

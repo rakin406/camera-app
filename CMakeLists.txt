@@ -12,21 +12,31 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 # Generate compile_commands.json
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Core Gui Quick QuickWidgets)
+set(SOURCES
+    src/app/main.cpp
+)
+
+# set(HEADERS
+# )
+
+set(FORMS
+    src/views/app.ui
+)
+
+set(QT_MODULES
+    Qt6::Core
+    Qt6::Gui
+    Qt6::Widgets
+)
+
+find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets)
 qt_standard_project_setup()
 
-qt_add_executable(${PROJECT_NAME} src/app/main.cpp)
-
-qt_add_qml_module(${PROJECT_NAME}
-    URI       src.views
-    VERSION   1.0
-    QML_FILES src/views/app.qml
-)
+qt_add_executable(${PROJECT_NAME} ${SOURCES} ${FORMS})
 
 target_include_directories(${PROJECT_NAME} PRIVATE include)
-target_link_libraries(${PROJECT_NAME} PRIVATE
-    Qt6::Core Qt6::Gui Qt6::Quick Qt6::QuickWidgets
-)
+
+target_link_libraries(${PROJECT_NAME} PRIVATE ${QT_MODULES})
 
 # MSVC flags
 set(MSVC_DEBUG_FLAGS /W4 /Wall /WX /DEBUG /Z7)

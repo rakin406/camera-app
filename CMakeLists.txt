@@ -20,7 +20,7 @@ set(SOURCES
 # )
 
 set(FORMS
-    src/views/app.ui
+    src/views/window.ui
 )
 
 set(QT_MODULES

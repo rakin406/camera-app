@@ -18,6 +18,8 @@ set(HEADERS
 )
 
 set(SOURCES
+    src/api/controllers/cameraController.cpp
+    src/api/models/camera.cpp
     src/app/main.cpp
 )
 
@@ -25,7 +27,7 @@ set(FORMS
     src/views/camera.ui
 )
 
-find_package(Qt6 REQUIRED COMPONENTS Multimedia MultimediaWidgets Widgets)
+find_package(Qt6 REQUIRED COMPONENTS Core Multimedia MultimediaWidgets Widgets)
 qt_standard_project_setup()
 
 qt_add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS} ${FORMS})
@@ -33,6 +35,7 @@ qt_add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS} ${FORMS})
 target_include_directories(${PROJECT_NAME} PRIVATE include)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
+    Qt6::Core
     Qt6::Multimedia
     Qt::MultimediaWidgets
     Qt6::Widgets

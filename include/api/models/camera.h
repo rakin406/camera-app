@@ -6,11 +6,12 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
+#include <memory>
+
 #include <QCamera>
 #include <QImageCapture>
 #include <QMainWindow>
 #include <QMediaRecorder>
-#include <QScopedPointer>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -29,9 +30,9 @@ public:
 private:
     Ui::Camera* m_ui {};
 
-    QScopedPointer<QCamera> m_camera {};
-    QScopedPointer<QImageCapture> m_imageCapture {};
-    QScopedPointer<QMediaRecorder> m_mediaRecorder {};
+    std::unique_ptr<QCamera> m_camera {};
+    std::unique_ptr<QImageCapture> m_imageCapture {};
+    std::unique_ptr<QMediaRecorder> m_mediaRecorder {};
 
     QString m_videoContainerFormat {};
     bool m_isCapturingImage { false };

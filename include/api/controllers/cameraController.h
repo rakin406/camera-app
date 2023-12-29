@@ -12,7 +12,6 @@
 #include <QImageCapture>
 #include <QMediaRecorder>
 #include <QObject>
-#include <QScopedPointer>
 
 namespace api {
 

@@ -12,6 +12,12 @@
 #include <QMediaRecorder>
 #include <QScopedPointer>
 
+QT_BEGIN_NAMESPACE
+namespace Ui {
+class Camera;
+}
+QT_END_NAMESPACE
+
 namespace api {
 
 class Camera : public QMainWindow {
@@ -21,6 +27,8 @@ public:
     Camera();
 
 private:
+    Ui::Camera* m_cameraUI {};
+
     QScopedPointer<QCamera> m_camera {};
     QScopedPointer<QImageCapture> m_imageCapture {};
     QScopedPointer<QMediaRecorder> m_mediaRecorder {};

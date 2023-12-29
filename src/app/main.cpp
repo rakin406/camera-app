@@ -3,7 +3,7 @@
  * @brief Entrypoint for the application.
  */
 
-#include <qt6/QtWidgets/QApplication>
+#include <QApplication>
 
 int main(int argc, char* argv[]) {
     QApplication app(argc, argv);

@@ -37,7 +37,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE include)
 target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt6::Core
     Qt6::Multimedia
-    Qt::MultimediaWidgets
+    Qt6::MultimediaWidgets
     Qt6::Widgets
 )
 

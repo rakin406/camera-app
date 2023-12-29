@@ -24,7 +24,7 @@ set(SOURCES
 )
 
 set(FORMS
-    src/views/camera.ui
+    views/camera.ui
 )
 
 find_package(Qt6 REQUIRED COMPONENTS Core Multimedia MultimediaWidgets Widgets)

@@ -27,6 +27,8 @@ set(FORMS
     views/camera.ui
 )
 
+set(CMAKE_AUTOUIC_SEARCH_PATHS views)
+
 find_package(Qt6 REQUIRED COMPONENTS Core Multimedia MultimediaWidgets Widgets)
 qt_standard_project_setup()
 

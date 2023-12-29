@@ -13,8 +13,8 @@ Cpp11BracedListStyle: false
 SpaceBeforeCpp11BracedList: true
 SpaceBeforeInheritanceColon: true
 SpaceBeforeRangeBasedForLoopColon: true
-BreakConstructorInitializers: AfterColon
-BreakInheritanceList: AfterColon
+BreakConstructorInitializers: BeforeComma
+BreakInheritanceList: BeforeComma
 AllowAllParametersOfDeclarationOnNextLine: false
 BinPackParameters: false
 BreakBeforeBinaryOperators: None

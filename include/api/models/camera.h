@@ -27,7 +27,7 @@ public:
     Camera();
 
 private:
-    Ui::Camera* m_cameraUI {};
+    Ui::Camera* m_ui {};
 
     QScopedPointer<QCamera> m_camera {};
     QScopedPointer<QImageCapture> m_imageCapture {};

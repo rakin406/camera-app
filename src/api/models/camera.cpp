@@ -12,10 +12,10 @@
 namespace api {
 
 Camera::Camera() :
-    m_cameraUI { new Ui::Camera },
+    m_ui { new Ui::Camera },
     // TODO: Allow front and back cameras.
     m_camera { new QCamera { QCameraDevice::FrontFace } } {
-    m_cameraUI->setupUi(this);
+    m_ui->setupUi(this);
     m_camera->start();
 }
 

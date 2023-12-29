@@ -6,12 +6,12 @@
 #ifndef CAMERA_CONTROLLER_H
 #define CAMERA_CONTROLLER_H
 
-#include "api/models/camera.h"
-
 #include <QCamera>
 #include <QImageCapture>
 #include <QMediaRecorder>
 #include <QObject>
+
+#include "api/models/camera.h"
 
 namespace api {
 

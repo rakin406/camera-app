@@ -13,12 +13,6 @@
 #include <QMainWindow>
 #include <QMediaRecorder>
 
-QT_BEGIN_NAMESPACE
-namespace Ui {
-class Camera;
-}
-QT_END_NAMESPACE
-
 namespace api {
 
 class Camera : public QMainWindow {
@@ -28,8 +22,6 @@ public:
     Camera();
 
 private:
-    Ui::Camera* m_ui {};
-
     std::unique_ptr<QCamera> m_camera {};
     std::unique_ptr<QImageCapture> m_imageCapture {};
     std::unique_ptr<QMediaRecorder> m_mediaRecorder {};

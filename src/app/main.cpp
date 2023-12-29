@@ -3,10 +3,10 @@
  * @brief Entrypoint for the application.
  */
 
-#include "api/models/camera.h"
-
 #include <QApplication>
 #include <QtWidgets>
+
+#include "api/models/camera.h"
 
 int main(int argc, char* argv[]) {
     using namespace api;

@@ -6,34 +6,21 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-#include <QAbstractItemModel>
 #include <QCamera>
 #include <QImageCapture>
+#include <QMainWindow>
 #include <QMediaRecorder>
 #include <QScopedPointer>
 
-namespace api::models {
+namespace api {
 
-class Camera : public QAbstractItemModel {
+class Camera : public QMainWindow {
     Q_OBJECT
 
 public:
-    explicit Camera(QObject* parent = nullptr);
-
-    int rowCount(const QModelIndex& parent = QModelIndex()) const override;
-    int columnCount(const QModelIndex& parent = QModelIndex()) const override;
-    QVariant data(const QModelIndex& index,
-                  int role = Qt::DisplayRole) const override;
-
-private slots:
-    // void record();
-    // void pause();
-    // void stop();
-    // void takeImage();
+    Camera();
 
 private:
-    api::models::Camera* m_model;
-
     QScopedPointer<QCamera> m_camera {};
     QScopedPointer<QImageCapture> m_imageCapture {};
     QScopedPointer<QMediaRecorder> m_mediaRecorder {};
@@ -43,6 +30,6 @@ private:
     bool m_isAppExiting { false };
 };
 
-}  // namespace api::models
+}  // namespace api
 
 #endif

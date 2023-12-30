@@ -59,7 +59,15 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
 
 # MSVC flags
 set(MSVC_DEBUG_FLAGS /W4 /Wall /WX /DEBUG /Z7)
-set(MSVC_RELEASE_FLAGS /W4 /Wall /Ox)
+set(MSVC_RELEASE_FLAGS
+    /W4
+    /Wall
+    /Ox
+    # WARNING: The following flags are not tested.
+    /QT_NO_DEBUG_OUTPUT
+    /QT_NO_INFO_OUTPUT
+    /QT_NO_WARNING_OUTPUT
+)
 
 # GCC and other compiler flags
 set(GCC_DEBUG_FLAGS
@@ -71,8 +79,17 @@ set(GCC_DEBUG_FLAGS
     -g3
     -ggdb
 )
-set(GCC_RELEASE_FLAGS -Wall -Wextra $<$<COMPILE_LANGUAGE:CXX>:-Wold-style-cast>
-                      -Wno-unused-parameter -O3)
+set(GCC_RELEASE_FLAGS
+    -Wall
+    -Wextra
+    $<$<COMPILE_LANGUAGE:CXX>:-Wold-style-cast>
+    -Wno-unused-parameter
+    -O3
+    # Qt flags
+    -QT_NO_DEBUG_OUTPUT
+    -QT_NO_INFO_OUTPUT
+    -QT_NO_WARNING_OUTPUT
+)
 
 if(MSVC)
   target_compile_options(${PROJECT_NAME}

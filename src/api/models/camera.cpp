@@ -21,22 +21,21 @@ namespace api {
 // TODO: Allow front and back cameras.
 Camera::Camera()
     : m_camera { new QCamera { QCameraDevice::FrontFace } }
-    , m_imageCapture { new QImageCapture } {
+    , m_imageCapture { new QImageCapture }
+    , m_videoWidget { new QVideoWidget } {
     Q_ASSERT(m_camera != nullptr);
     Q_ASSERT(m_imageCapture != nullptr);
+    Q_ASSERT(m_videoWidget != nullptr);
 
-    QMediaCaptureSession captureSession {};
-    captureSession.setCamera(m_camera.get());
-    captureSession.setImageCapture(m_imageCapture.get());
-    Q_ASSERT(captureSession.camera() != nullptr);
-    Q_ASSERT(captureSession.imageCapture() != nullptr);
-    qInfo("QMediaCaptureSession successful.");
+    m_captureSession.setCamera(m_camera.get());
+    m_captureSession.setImageCapture(m_imageCapture.get());
+    Q_ASSERT(m_captureSession.camera() != nullptr);
+    Q_ASSERT(m_captureSession.imageCapture() != nullptr);
 
     // Show camera preview
-    std::unique_ptr<QVideoWidget> videoWidget { new QVideoWidget };
-    captureSession.setVideoOutput(videoWidget.get());
-    Q_ASSERT(captureSession.videoOutput() != nullptr);
-    videoWidget->show();
+    m_captureSession.setVideoOutput(m_videoWidget.get());
+    Q_ASSERT(m_captureSession.videoOutput() != nullptr);
+    m_videoWidget->show();
     qInfo("Showing video widget.");
 
     m_camera->start();

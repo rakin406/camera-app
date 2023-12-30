@@ -10,8 +10,10 @@
 
 #include <QCamera>
 #include <QImageCapture>
+#include <QMediaCaptureSession>
 #include <QMediaRecorder>
 #include <QQuickWindow>
+#include <QVideoWidget>
 
 namespace api {
 
@@ -24,11 +26,10 @@ public:
 private:
     std::unique_ptr<QCamera> m_camera {};
     std::unique_ptr<QImageCapture> m_imageCapture {};
-    std::unique_ptr<QMediaRecorder> m_mediaRecorder {};
+    std::unique_ptr<QVideoWidget> m_videoWidget {};
 
-    QString m_videoContainerFormat {};
-    bool m_isCapturingImage { false };
-    bool m_isAppExiting { false };
+    QMediaCaptureSession m_captureSession {};
+    QMediaRecorder m_mediaRecorder {};
 };
 
 }  // namespace api

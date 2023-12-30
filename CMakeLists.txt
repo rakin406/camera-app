@@ -15,13 +15,13 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 set(HEADERS
-    include/api/controllers/cameraController.h
-    include/api/models/camera.h
+    # include/api/controllers/cameraController.h
+    # include/api/models/camera.h
 )
 
 set(SOURCES
-    src/api/controllers/cameraController.cpp
-    src/api/models/camera.cpp
+    # src/api/controllers/cameraController.cpp
+    # src/api/models/camera.cpp
     src/app/main.cpp
 )
 

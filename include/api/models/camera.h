@@ -10,12 +10,12 @@
 
 #include <QCamera>
 #include <QImageCapture>
-#include <QMainWindow>
 #include <QMediaRecorder>
+#include <QQuickWindow>
 
 namespace api {
 
-class Camera : public QMainWindow {
+class Camera : public QQuickWindow {
     Q_OBJECT
 
 public:

@@ -1,15 +1,21 @@
 import QtQuick
 
-Item {
-    VideoOutput {
-        id: output
-        anchors.fill: parent
-    }
-    CaptureSession {
-        videoOutput: output
+Window {
+    id: mainWindow
+    title: "Camera"
 
-        Camera {
-            // You can adjust various settings in here
+    CaptureSession {
+        id: captureSession
+        camera: Camera {
+            id: camera
         }
+        imageCapture: ImageCapture {
+            id: imageCapture
+        }
+
+        recorder: MediaRecorder {
+            id: recorder
+        }
+        videoOutput: preview
     }
 }

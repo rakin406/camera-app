@@ -6,8 +6,6 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-#include <memory>
-
 #include <QCamera>
 #include <QImageCapture>
 #include <QMediaCaptureSession>
@@ -24,11 +22,10 @@ public:
     Camera();
 
 private:
-    std::unique_ptr<QCamera> m_camera {};
-    std::unique_ptr<QImageCapture> m_imageCapture {};
-    std::unique_ptr<QVideoWidget> m_videoWidget {};
-
+    QCamera m_camera {};
     QMediaCaptureSession m_captureSession {};
+    QImageCapture m_imageCapture {};
+    QVideoWidget m_videoWidget {};
     QMediaRecorder m_mediaRecorder {};
 };
 

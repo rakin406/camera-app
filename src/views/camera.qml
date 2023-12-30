@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Controls
+// import QtQuick.Controls.Styles
 import QtMultimedia
 
 ApplicationWindow {
@@ -16,17 +17,34 @@ ApplicationWindow {
         id: mediaDevices
     }
 
-    CaptureSession {
-        camera: Camera {
-            id: camera
-
-            cameraDevice: mediaDevices.defaultVideoInput
-        }
-        videoOutput: videoOutput
-    }
-
-    VideoOutput {
-        id: videoOutput
+    SplitView {
+        id: splitView
         anchors.fill: parent
+
+        CaptureSession {
+            camera: Camera {
+                id: camera
+
+                cameraDevice: mediaDevices.defaultVideoInput
+            }
+            videoOutput: videoOutput
+        }
+
+        VideoOutput {
+            id: videoOutput
+            anchors.fill: parent
+
+            RoundButton {
+                // FIX: Cannot assign to non-existent property "iconSource"
+                iconSource: "qrc:///images/recordIcon.png"
+                anchors.centerIn: parent
+
+                /*
+                style: ButtonStyle {
+                    padding: 0
+                }
+                */
+            }
+        }
     }
 }

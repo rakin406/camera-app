@@ -67,6 +67,7 @@ set(MSVC_RELEASE_FLAGS
     /QT_NO_DEBUG_OUTPUT
     /QT_NO_INFO_OUTPUT
     /QT_NO_WARNING_OUTPUT
+    /QT_NO_DEBUG
 )
 
 # GCC and other compiler flags
@@ -89,6 +90,7 @@ set(GCC_RELEASE_FLAGS
     -QT_NO_DEBUG_OUTPUT
     -QT_NO_INFO_OUTPUT
     -QT_NO_WARNING_OUTPUT
+    -QT_NO_DEBUG
 )
 
 if(MSVC)

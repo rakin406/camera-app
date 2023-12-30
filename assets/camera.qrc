@@ -1,6 +1,6 @@
 <RCC>
-    <qresource prefix="/">
-        <file>images/captureIcon.png</file>
-        <file>images/recordIcon.png</file>
+    <qresource>
+        <file compress="1" compress-algo="zstd">images/captureIcon.png</file>
+        <file compress="1" compress-algo="zstd">images/recordIcon.png</file>
     </qresource>
 </RCC>

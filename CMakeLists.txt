@@ -22,7 +22,7 @@ set(HEADERS
 set(SOURCES
     # src/api/controllers/cameraController.cpp
     # src/api/models/camera.cpp
-    src/app/main.cpp
+    src/main.cpp
 )
 
 find_package(Qt6 REQUIRED COMPONENTS
@@ -39,7 +39,7 @@ qt_standard_project_setup()
 
 qt_add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
 
-set_source_files_properties(views/camera.qml PROPERTIES
+set_source_files_properties(src/views/camera.qml PROPERTIES
     QT_RESOURCE_ALIAS camera.qml
 )
 
@@ -47,7 +47,7 @@ qt_add_qml_module(${PROJECT_NAME}
     URI views
     VERSION 1.0
     QML_FILES
-        views/camera.qml
+        src/views/camera.qml
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE include)

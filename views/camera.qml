@@ -1,21 +1,32 @@
 import QtQuick
+import QtQuick.Controls
+import QtMultimedia
 
-Window {
-    id: mainWindow
+ApplicationWindow {
+    id: root
+    visible: true
     title: "Camera"
 
+    width: 1280
+    height: 720
+    minimumHeight: 100
+    minimumWidth: 100
+
+    MediaDevices {
+        id: mediaDevices
+    }
+
     CaptureSession {
-        id: captureSession
         camera: Camera {
             id: camera
-        }
-        imageCapture: ImageCapture {
-            id: imageCapture
-        }
 
-        recorder: MediaRecorder {
-            id: recorder
+            cameraDevice: mediaDevices.defaultVideoInput
         }
-        videoOutput: preview
+        videoOutput: videoOutput
+    }
+
+    VideoOutput {
+        id: videoOutput
+        anchors.fill: parent
     }
 }

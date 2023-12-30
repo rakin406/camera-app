@@ -10,16 +10,22 @@
 #include <QImageCapture>
 #include <QMediaCaptureSession>
 #include <QMediaRecorder>
-#include <QQuickWindow>
+#include <QQuickWidget>
+#include <QString>
 #include <QVideoWidget>
 
 namespace api {
 
-class Camera : public QQuickWindow {
+class Camera : public QQuickWidget {
     Q_OBJECT
 
 public:
-    Camera();
+    /**
+     * @brief Constructor for Camera.
+     *
+     * @param qmlPath File path or URL to QML.
+     */
+    explicit Camera(const QString& qmlPath);
 
 private:
     QCamera m_camera {};

@@ -27,11 +27,13 @@ set(SOURCES
 
 find_package(Qt6 REQUIRED COMPONENTS
     Core
+    Gui
     Multimedia
     MultimediaWidgets
+    Qml
     Quick
+    QuickWidgets
     QuickControls2
-    Widgets
 )
 qt_standard_project_setup()
 
@@ -52,11 +54,12 @@ target_include_directories(${PROJECT_NAME} PRIVATE include)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt6::Core
+    Qt6::Gui
     Qt6::Multimedia
     Qt6::MultimediaWidgets
+    Qt6::Qml
     Qt6::Quick
     Qt6::QuickControls2
-    Qt6::Widgets
 )
 
 # MSVC flags

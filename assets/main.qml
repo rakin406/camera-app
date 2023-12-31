@@ -36,7 +36,7 @@ ApplicationWindow {
 
             RoundButton {
                 // FIX: Cannot assign to non-existent property "iconSource"
-                iconSource: "qrc:///images/recordIcon.png"
+                iconSource: ":/res/recordIcon.png"
                 anchors.centerIn: parent
 
                 /*

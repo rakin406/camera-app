@@ -5,9 +5,15 @@
 
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QStringLiteral>
+#include <QUrl>
 
 int main(int argc, char* argv[]) {
     QGuiApplication app { argc, argv };
-    QQmlApplicationEngine engine { "views/camera.qml" };
+
+    QQmlApplicationEngine engine {};
+    // engine.addImportPath(QStringLiteral("qrc:/"));
+    engine.load(QUrl(QStringLiteral(":views/main.qml")));
+
     return app.exec();
 }

@@ -1,17 +1,10 @@
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.19)
 
 project(camera-app VERSION 1.0 LANGUAGES CXX)
 
 # Explicitly opt in to modern CMake behaviors to avoid warnings with recent
 # versions of CMake.
 cmake_policy(SET CMP0063 NEW)
-
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)
-
-# Generate compile_commands.json
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 set(HEADERS
     # include/api/controllers/cameraController.h
@@ -35,8 +28,6 @@ find_package(Qt6 REQUIRED COMPONENTS
     QuickControls2
 )
 qt_standard_project_setup()
-
-set(CMAKE_AUTORCC ON)
 
 qt_add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS} public/main.qrc)
 target_include_directories(${PROJECT_NAME} PRIVATE include)

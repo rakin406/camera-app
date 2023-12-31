@@ -6,8 +6,6 @@ project(camera-app VERSION 1.0 LANGUAGES CXX)
 # versions of CMake.
 cmake_policy(SET CMP0063 NEW)
 
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
@@ -38,8 +36,9 @@ find_package(Qt6 REQUIRED COMPONENTS
 )
 qt_standard_project_setup()
 
-qt_add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS} public/main.qrc)
+set(CMAKE_AUTORCC ON)
 
+qt_add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS} public/main.qrc)
 target_include_directories(${PROJECT_NAME} PRIVATE include)
 target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt6::Core

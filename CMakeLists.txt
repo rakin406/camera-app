@@ -38,7 +38,7 @@ find_package(Qt6 REQUIRED COMPONENTS
 )
 qt_standard_project_setup()
 
-qt_add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS} public/camera.qrc)
+qt_add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS} public/main.qrc)
 
 target_include_directories(${PROJECT_NAME} PRIVATE include)
 target_link_libraries(${PROJECT_NAME} PRIVATE

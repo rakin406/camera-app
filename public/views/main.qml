@@ -34,19 +34,14 @@ ApplicationWindow {
             id: videoOutput
             anchors.fill: parent
 
-            /*
             RoundButton {
-                // FIX: Cannot assign to non-existent property "iconSource"
-                iconSource: ":/res/recordIcon.png"
+                icon.source: "qrc:/images/record-icon.png"
                 anchors.centerIn: parent
 
-                /*
-                style: ButtonStyle {
-                    padding: 0
-                }
-                */
+                //style: ButtonStyle {
+                    //padding: 0
+                //}
             }
-            */
         }
     }
 }

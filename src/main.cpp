@@ -13,7 +13,7 @@ int main(int argc, char* argv[]) {
 
     QQmlApplicationEngine engine {};
     // engine.addImportPath(QStringLiteral("qrc:/"));
-    engine.load(QUrl(QStringLiteral(":views/main.qml")));
+    engine.load(QUrl(QStringLiteral("qrc:/views/main.qml")));
 
     return app.exec();
 }

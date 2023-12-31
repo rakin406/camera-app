@@ -1,6 +1,6 @@
 import QtQuick
 import QtQuick.Controls
-// import QtQuick.Controls.Styles
+import QtQuick.Layouts
 import QtMultimedia
 
 ApplicationWindow {
@@ -30,15 +30,24 @@ ApplicationWindow {
         id: videoOutput
         anchors.fill: parent
 
-        RoundButton {
-            icon.source: "qrc:/images/record-icon.png"
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: 40
+        RowLayout {
+            id: layout
+            anchors.fill: parent
+            spacing: 6
 
-            //style: ButtonStyle {
-                //padding: 0
-            //}
+            RoundButton {
+                id: recordButton
+                Layout.alignment: Qt.AlignBottom | Qt.AlignHCenter
+                Layout.preferredWidth: 50
+                Layout.preferredHeight: 50
+                Layout.bottomMargin: 40
+
+                Image {
+                    anchors.fill: parent
+                    source: "qrc:/images/record-icon.png"
+                    fillMode: Image.PreserveAspectFit
+                }
+            }
         }
     }
 }

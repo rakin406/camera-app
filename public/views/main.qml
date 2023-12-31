@@ -17,31 +17,28 @@ ApplicationWindow {
         id: mediaDevices
     }
 
-    SplitView {
-        id: splitView
+    CaptureSession {
+        camera: Camera {
+            id: camera
+
+            cameraDevice: mediaDevices.defaultVideoInput
+        }
+        videoOutput: videoOutput
+    }
+
+    VideoOutput {
+        id: videoOutput
         anchors.fill: parent
 
-        CaptureSession {
-            camera: Camera {
-                id: camera
+        RoundButton {
+            icon.source: "qrc:/images/record-icon.png"
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 40
 
-                cameraDevice: mediaDevices.defaultVideoInput
-            }
-            videoOutput: videoOutput
-        }
-
-        VideoOutput {
-            id: videoOutput
-            anchors.fill: parent
-
-            RoundButton {
-                icon.source: "qrc:/images/record-icon.png"
-                anchors.centerIn: parent
-
-                //style: ButtonStyle {
-                    //padding: 0
-                //}
-            }
+            //style: ButtonStyle {
+                //padding: 0
+            //}
         }
     }
 }

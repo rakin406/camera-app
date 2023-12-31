@@ -54,7 +54,7 @@ set(MSVC_RELEASE_FLAGS
     /QT_NO_DEBUG
 )
 
-# GCC and other compiler flags
+# GCC/Clang compiler flags
 set(GCC_DEBUG_FLAGS
     -Wall
     -Wextra
@@ -70,6 +70,7 @@ set(GCC_RELEASE_FLAGS
     $<$<COMPILE_LANGUAGE:CXX>:-Wold-style-cast>
     -Wno-unused-parameter
     -O3
+    -DNDEBUG
     # Qt flags
     -QT_NO_DEBUG_OUTPUT
     -QT_NO_INFO_OUTPUT
@@ -78,13 +79,13 @@ set(GCC_RELEASE_FLAGS
 )
 
 if(MSVC)
-  target_compile_options(${PROJECT_NAME}
-                         PRIVATE "$<$<CONFIG:DEBUG>:SHELL:${MSVC_DEBUG_FLAGS}>")
-  target_compile_options(
-    ${PROJECT_NAME} PRIVATE "$<$<CONFIG:RELEASE>:SHELL:${MSVC_RELEASE_FLAGS}>")
+    target_compile_options(${PROJECT_NAME}
+        PRIVATE "$<$<CONFIG:DEBUG>:SHELL:${MSVC_DEBUG_FLAGS}>")
+    target_compile_options(
+        ${PROJECT_NAME} PRIVATE "$<$<CONFIG:RELEASE>:SHELL:${MSVC_RELEASE_FLAGS}>")
 else()
-  target_compile_options(${PROJECT_NAME}
-                         PRIVATE "$<$<CONFIG:DEBUG>:SHELL:${GCC_DEBUG_FLAGS}>")
-  target_compile_options(
-    ${PROJECT_NAME} PRIVATE "$<$<CONFIG:RELEASE>:SHELL:${GCC_RELEASE_FLAGS}>")
+    target_compile_options(${PROJECT_NAME}
+        PRIVATE "$<$<CONFIG:DEBUG>:SHELL:${GCC_DEBUG_FLAGS}>")
+    target_compile_options(
+        ${PROJECT_NAME} PRIVATE "$<$<CONFIG:RELEASE>:SHELL:${GCC_RELEASE_FLAGS}>")
 endif()

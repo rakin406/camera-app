@@ -38,21 +38,9 @@ find_package(Qt6 REQUIRED COMPONENTS
 )
 qt_standard_project_setup()
 
-qt_add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS} assets/camera.qrc)
-
-set_source_files_properties(src/views/camera.qml PROPERTIES
-    QT_RESOURCE_ALIAS camera.qml
-)
-
-qt_add_qml_module(${PROJECT_NAME}
-    URI views
-    VERSION 1.0
-    QML_FILES
-        src/views/camera.qml
-)
+qt_add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS} public/camera.qrc)
 
 target_include_directories(${PROJECT_NAME} PRIVATE include)
-
 target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt6::Core
     Qt6::Gui

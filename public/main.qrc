@@ -1,13 +1,13 @@
 <RCC>
     <qresource prefix="/views">
-        <file>../src/views/camera.qml</file>
+        <file alias="main.qml">views/main.qml</file>
     </qresource>
     <qresource prefix="/images">
-        <file alias="captureIcon.png" compress="1" compress-algo="zstd">
-            images/captureIcon.png
+        <file alias="capture-icon.png" compress="1" compress-algo="zstd">
+            images/capture-icon.png
         </file>
-        <file alias="recordIcon.png" compress="1" compress-algo="zstd">
-            images/recordIcon.png
+        <file alias="record-icon.png" compress="1" compress-algo="zstd">
+            images/record-icon.png
         </file>
     </qresource>
 </RCC>

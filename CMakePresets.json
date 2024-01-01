@@ -37,28 +37,22 @@
   ],
   "buildPresets": [
     {
-      "name": "default-build",
-      "displayName": "RelWithDebInfo",
+      "name": "default",
       "configurePreset": "default",
-      "description": "RelWithDebInfo build",
       "nativeToolOptions": [
         "-v"
       ]
     },
     {
-      "name": "debug-build",
-      "displayName": "Debug",
+      "name": "debug",
       "configurePreset": "debug",
-      "description": "Debug build",
       "nativeToolOptions": [
         "-v"
       ]
     },
     {
-      "name": "release-build",
-      "displayName": "Release",
+      "name": "release",
       "configurePreset": "release",
-      "description": "Release build",
       "nativeToolOptions": [
         "-v"
       ]

@@ -38,6 +38,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt6::MultimediaWidgets
     Qt6::Qml
     Qt6::Quick
+    Qt6::QuickWidgets
     Qt6::QuickControls2
 )
 

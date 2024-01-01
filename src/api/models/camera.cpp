@@ -15,7 +15,7 @@
 
 namespace api {
 
-// TODO: Allow front and back cameras.
+// TODO(rakin): Allow front and back cameras.
 Camera::Camera(const QString& qmlPath) {
     // Load QML file
     setSource(QUrl::fromLocalFile(qmlPath));

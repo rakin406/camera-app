@@ -1,18 +1,22 @@
+WarningsAsErrors: '*,-clang-diagnostic-unused-function'
 Checks: >
-    -*,
-    bugprone-unhandled-self-assignment,
-    modernize-deprecated-headers,
-    modernize-make-unique,
-    modernize-make-shared,
-    modernize-redundant-void-arg,
-    modernize-replace-random-shuffle,
-    modernize-shrink-to-fit,
-    modernize-use-bool-literals,
-    modernize-use-emplace,
-    modernize-use-equals-default,
-    modernize-use-nullptr,
-    modernize-use-override,
-    performance-faster-string-find,
-    readability-delete-null-pointer,
-    -clang-analyzer-security.insecureAPI.rand
-WarningsAsErrors: '*'
+    Enable all warnings by default. This ensures we don't miss new and useful
+    warnings when a new version of clang-tidy is dropped.
+
+    IMPORTANT
+    clang-tidy doesn't support comments but we can simulate comments by just
+    writing text directly here. These are then interpreted as warnings and will
+    be dropped. As long as you start every sentence with a capital letter and
+    don't use commas in your "comments" you should be fine,
+
+    *,
+    -bugprone-assignment-in-if-condition,
+    -bugprone-implicit-widening-of-multiplication-result,
+    -bugprone-not-null-terminated-result,
+    -bugprone-suspicious-memory-comparison,
+    -bugprone-switch-missing-default-case,
+    -cert-env33-c,
+    -cert-err33-c,
+    -cert-err34-c,
+    -concurrency-mt-unsafe,
+    -cppcoreguidelines-narrowing-conversions,

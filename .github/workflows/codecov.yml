@@ -1,0 +1,19 @@
+coverage:
+  range: 50..70
+  round: nearest
+  precision: 0
+
+  status:
+    project:
+      default:
+        # basic
+        target: 80%
+        threshold: 0%
+        paths:
+          - "src"
+        # advanced settings
+        branches:
+          - main
+        if_ci_failed: error # success, failure, error, ignore
+        informational: false
+        only_pulls: false

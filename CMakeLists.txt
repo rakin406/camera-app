@@ -42,51 +42,35 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt6::QuickControls2
 )
 
-# MSVC flags
-set(MSVC_DEBUG_FLAGS /W4 /Wall /WX /DEBUG /Z7)
-set(MSVC_RELEASE_FLAGS
-    /W4
-    /Wall
-    /Ox
-    # WARNING: The following flags are not tested.
-    /QT_NO_DEBUG_OUTPUT
-    /QT_NO_INFO_OUTPUT
-    /QT_NO_WARNING_OUTPUT
-    /QT_NO_DEBUG
-)
-
-# GCC/Clang compiler flags
-set(GCC_DEBUG_FLAGS
-    -Wall
-    -Wextra
-    -Werror
-    $<$<COMPILE_LANGUAGE:CXX>:-Wold-style-cast>
-    -Wno-unused-parameter
-    -g3
-    -ggdb
-)
-set(GCC_RELEASE_FLAGS
-    -Wall
-    -Wextra
-    $<$<COMPILE_LANGUAGE:CXX>:-Wold-style-cast>
-    -Wno-unused-parameter
-    -O3
-    -DNDEBUG
-    # Qt flags
-    -QT_NO_DEBUG_OUTPUT
-    -QT_NO_INFO_OUTPUT
-    -QT_NO_WARNING_OUTPUT
-    -QT_NO_DEBUG
-)
+#-------------------------------------------------------------------------------
+# Compiler and linker options
+#-------------------------------------------------------------------------------
 
 if(MSVC)
-    target_compile_options(${PROJECT_NAME}
-        PRIVATE "$<$<CONFIG:DEBUG>:SHELL:${MSVC_DEBUG_FLAGS}>")
-    target_compile_options(
-        ${PROJECT_NAME} PRIVATE "$<$<CONFIG:RELEASE>:SHELL:${MSVC_RELEASE_FLAGS}>")
+    target_compile_options(${PROJECT_NAME} PRIVATE -W3)
+
+    # Disable warnings that give too many false positives.
+    target_compile_options(${PROJECT_NAME} PRIVATE -wd4311 -wd4146 -wd4003 -wd4715)
 else()
-    target_compile_options(${PROJECT_NAME}
-        PRIVATE "$<$<CONFIG:DEBUG>:SHELL:${GCC_DEBUG_FLAGS}>")
-    target_compile_options(
-        ${PROJECT_NAME} PRIVATE "$<$<CONFIG:RELEASE>:SHELL:${GCC_RELEASE_FLAGS}>")
+    target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -pedantic
+        -Wno-unused-parameter
+        -Wstrict-prototypes -std=c++20 -Wshadow -Wconversion -Wvla
+        -Wdouble-promotion
+        -Wmissing-noreturn
+        -Wmissing-format-attribute
+        -Wmissing-prototypes
+        -fsigned-char)
+endif()
+
+# -fstack-protector breaks Mingw-w64 builds
+if(NOT MINGW)
+    check_cxx_compiler_flag(-fstack-protector-strong HAS_FSTACK_PROTECTOR_STRONG_FLAG)
+    if(HAS_FSTACK_PROTECTOR_STRONG_FLAG)
+        target_compile_options(${PROJECT_NAME} PRIVATE -fstack-protector-strong)
+    else()
+        check_cxx_compiler_flag(-fstack-protector HAS_FSTACK_PROTECTOR_FLAG)
+        if(HAS_FSTACK_PROTECTOR_FLAG)
+            target_compile_options(${PROJECT_NAME} PRIVATE -fstack-protector --param ssp-buffer-size=4)
+        endif()
+    endif()
 endif()

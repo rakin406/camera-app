@@ -33,26 +33,34 @@
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release"
       }
+    },
+    {
+      "name": "dev",
+      "displayName": "Development",
+      "description": "Same as Debug, but with linter checks",
+      "inherits": "debug",
+      "cacheVariables": {
+        "CMAKE_CXX_CPPCHECK": "cppcheck;--language=c++",
+        "CMAKE_CXX_CPPLINT": "cpplint"
+      }
     }
   ],
   "buildPresets": [
     {
       "name": "default",
-      "configurePreset": "default",
-      "nativeToolOptions": [
-        "-v"
-      ]
+      "configurePreset": "default"
     },
     {
       "name": "debug",
-      "configurePreset": "debug",
-      "nativeToolOptions": [
-        "-v"
-      ]
+      "configurePreset": "debug"
     },
     {
       "name": "release",
-      "configurePreset": "release",
+      "configurePreset": "release"
+    },
+    {
+      "name": "dev",
+      "configurePreset": "dev",
       "nativeToolOptions": [
         "-v"
       ]

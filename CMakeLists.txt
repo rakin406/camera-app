@@ -8,6 +8,13 @@ if(POLICY CMP0063)
     cmake_policy(SET CMP0063 NEW)
 endif()
 
+# Use ccache for faster rebuilds
+find_program(CCACHE_PRG ccache)
+if(CCACHE_PRG)
+    set(CMAKE_CXX_COMPILER_LAUNCHER ${CMAKE_COMMAND} -E env
+        CCACHE_SLOPPINESS=pch_defines,time_macros ${CCACHE_PRG})
+endif()
+
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)

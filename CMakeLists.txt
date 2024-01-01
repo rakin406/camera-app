@@ -1,10 +1,12 @@
 cmake_minimum_required(VERSION 3.19)
 
-project(camera-app VERSION 1.0 LANGUAGES CXX)
+project(camera-app CXX)
 
 # Explicitly opt in to modern CMake behaviors to avoid warnings with recent
 # versions of CMake.
-cmake_policy(SET CMP0063 NEW)
+if(POLICY CMP0063)
+    cmake_policy(SET CMP0063 NEW)
+endif()
 
 set(HEADERS
     # include/api/controllers/cameraController.h
@@ -70,7 +72,8 @@ if(NOT MINGW)
     else()
         check_cxx_compiler_flag(-fstack-protector HAS_FSTACK_PROTECTOR_FLAG)
         if(HAS_FSTACK_PROTECTOR_FLAG)
-            target_compile_options(${PROJECT_NAME} PRIVATE -fstack-protector --param ssp-buffer-size=4)
+            target_compile_options(${PROJECT_NAME} PRIVATE -fstack-protector
+                --param ssp-buffer-size=4)
         endif()
     endif()
 endif()

@@ -8,6 +8,13 @@ if(POLICY CMP0063)
     cmake_policy(SET CMP0063 NEW)
 endif()
 
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_AUTORCC ON)
+
 set(HEADERS
     # include/api/controllers/cameraController.h
     # include/api/models/camera.h
@@ -44,10 +51,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt6::QuickControls2
 )
 
-#-------------------------------------------------------------------------------
-# Compiler and linker options
-#-------------------------------------------------------------------------------
-
+# Compiler options
 if(MSVC)
     target_compile_options(${PROJECT_NAME} PRIVATE -W3)
 
@@ -56,7 +60,7 @@ if(MSVC)
 else()
     target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -pedantic
         -Wno-unused-parameter
-        -Wstrict-prototypes -std=c++20 -Wshadow -Wconversion -Wvla
+        -Wstrict-prototypes -Wshadow -Wconversion -Wvla
         -Wdouble-promotion
         -Wmissing-noreturn
         -Wmissing-format-attribute

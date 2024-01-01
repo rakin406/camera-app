@@ -3,83 +3,33 @@
   "configurePresets": [
     {
       "name": "base",
-      "displayName": "Base preset",
-      "hidden": true,
       "generator": "Ninja",
-      "binaryDir": "${sourceDir}/out/build/${presetName}",
-      "installDir": "${sourceDir}/out/install/${presetName}",
+      "binaryDir": "${sourceDir}/build",
+      "hidden": true
+    },
+    {
+      "name": "default",
+      "displayName": "RelWithDebInfo",
+      "description": "Enables optimizations (-Og or -O2) with debug information",
+      "inherits": "base",
       "cacheVariables": {
-        "CMAKE_CXX_STANDARD": "20",
-        "CMAKE_CXX_STANDARD_REQUIRED": "ON",
-        "CMAKE_CXX_EXTENSIONS": "OFF",
-        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
-        "CMAKE_AUTORCC": "ON"
+        "CMAKE_BUILD_TYPE": "RelWithDebInfo"
       }
     },
     {
-      "name": "x64-debug",
-      "displayName": "x64 Debug",
-      "description": "Sets debug build type and x64 arch",
+      "name": "debug",
+      "displayName": "Debug",
+      "description": "Disables optimizations (-O0), enables debug information",
       "inherits": "base",
-      "architecture": {
-        "value": "x64",
-        "strategy": "external"
-      },
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug"
       }
     },
     {
-      "name": "x64-release",
-      "displayName": "x64 Release",
-      "description": "Sets release build type",
-      "inherits": "x64-debug",
-      "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Release"
-      }
-    },
-    {
-      "name": "x86-debug",
-      "displayName": "x86 Debug ",
-      "description": "Sets debug build type and x86 arch",
+      "name": "release",
+      "displayName": "Release",
+      "description": "Same as RelWithDebInfo, but disables debug information",
       "inherits": "base",
-      "architecture": {
-        "value": "x86",
-        "strategy": "external"
-      },
-      "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Debug"
-      }
-    },
-    {
-      "name": "x86-release",
-      "displayName": "x86 Release",
-      "description": "Sets release build type",
-      "inherits": "x86-debug",
-      "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Release"
-      }
-    },
-    {
-      "name": "linux-debug",
-      "displayName": "Linux Debug",
-      "description": "Sets GCC",
-      "inherits": "base",
-      "cacheVariables": {
-        "CMAKE_CXX_COMPILER": "g++",
-        "CMAKE_BUILD_TYPE": "Debug"
-      },
-      "condition": {
-        "type": "equals",
-        "lhs": "${hostSystemName}",
-        "rhs": "Linux"
-      }
-    },
-    {
-      "name": "linux-release",
-      "displayName": "Linux Release",
-      "description": "Sets release build type",
-      "inherits": "linux-debug",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release"
       }
@@ -87,36 +37,27 @@
   ],
   "buildPresets": [
     {
-      "name": "debug-build-linux",
-      "displayName": "Linux Debug",
-      "configurePreset": "linux-debug",
+      "name": "default-build",
+      "displayName": "RelWithDebInfo",
+      "configurePreset": "default",
+      "description": "RelWithDebInfo build",
+      "nativeToolOptions": [
+        "-v"
+      ]
+    },
+    {
+      "name": "debug-build",
+      "displayName": "Debug",
+      "configurePreset": "debug",
       "description": "Debug build",
       "nativeToolOptions": [
         "-v"
       ]
     },
     {
-      "name": "debug-build-windows",
-      "displayName": "Windows Debug",
-      "configurePreset": "x64-debug",
-      "description": "Debug build",
-      "nativeToolOptions": [
-        "-v"
-      ]
-    },
-    {
-      "name": "release-build-linux",
-      "displayName": "Linux Release",
-      "configurePreset": "linux-release",
-      "description": "Release build",
-      "nativeToolOptions": [
-        "-v"
-      ]
-    },
-    {
-      "name": "release-build-windows",
-      "displayName": "Windows Release",
-      "configurePreset": "x64-release",
+      "name": "release-build",
+      "displayName": "Release",
+      "configurePreset": "release",
       "description": "Release build",
       "nativeToolOptions": [
         "-v"

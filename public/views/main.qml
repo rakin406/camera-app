@@ -81,7 +81,18 @@ ApplicationWindow {
                 FolderDialog {
                     id: folderDialog
                     currentFolder: StandardPaths.standardLocations(StandardPaths.PicturesLocation)[0]
-                    onAccepted: imageCapture.saveToFile(selectedFolder)
+                    onAccepted: {
+                        var path = selectedFolder.toString();
+
+                        // Remove prefixed "file://"
+                        path = path.replace(/^(file:\/{2})|(qrc:\/{2})|(http:\/{2})/,"");
+
+                        // Unescape html codes like '%23' for '#'
+                        path = decodeURIComponent(path);
+
+                        // TODO: Specify file name.
+                        imageCapture.saveToFile(path)
+                    }
                 }
             }
         }

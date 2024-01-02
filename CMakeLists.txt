@@ -37,10 +37,8 @@ find_package(Qt6 REQUIRED COMPONENTS
     Core
     Gui
     Multimedia
-    MultimediaWidgets
     Qml
     Quick
-    QuickWidgets
     QuickControls2
 )
 qt_standard_project_setup()
@@ -51,10 +49,8 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt6::Core
     Qt6::Gui
     Qt6::Multimedia
-    Qt6::MultimediaWidgets
     Qt6::Qml
     Qt6::Quick
-    Qt6::QuickWidgets
     Qt6::QuickControls2
 )
 

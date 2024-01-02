@@ -1,5 +1,7 @@
+import QtCore
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Dialogs
 import QtQuick.Layouts
 import QtMultimedia
 
@@ -72,7 +74,16 @@ ApplicationWindow {
                     fillMode: Image.PreserveAspectFit
                 }
 
-                onClicked: captured
+                onClicked: {
+                    imageCapture.capture()
+                    folderDialog.open()
+                }
+
+                FolderDialog {
+                    id: folderDialog
+                    currentFolder: StandardPaths.standardLocations(StandardPaths.PicturesLocation)[0]
+                    onAccepted: imageCapture.saveToFile(selectedFolder)
+                }
             }
         }
     }

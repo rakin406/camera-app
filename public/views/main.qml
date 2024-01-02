@@ -42,11 +42,16 @@ ApplicationWindow {
                 Layout.preferredHeight: 50
                 Layout.bottomMargin: 40
 
+                signal startedRecording
+                signal stoppedRecording
+
                 Image {
                     anchors.fill: parent
                     source: "qrc:/images/record-icon.png"
                     fillMode: Image.PreserveAspectFit
                 }
+
+                onClicked: startedRecording
             }
 
             RoundButton {
@@ -55,6 +60,8 @@ ApplicationWindow {
                 Layout.preferredWidth: 50
                 Layout.preferredHeight: 50
                 Layout.bottomMargin: 40
+
+                signal captured
 
                 Image {
                     anchors.fill: parent

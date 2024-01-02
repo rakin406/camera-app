@@ -43,7 +43,6 @@ ApplicationWindow {
 
             signal startedRecording
             signal stoppedRecording
-            signal captured
 
             RoundButton {
                 id: recordButton

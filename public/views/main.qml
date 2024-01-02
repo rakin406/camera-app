@@ -18,11 +18,15 @@ ApplicationWindow {
     }
 
     CaptureSession {
+        imageCapture : ImageCapture {
+            id: imageCapture
+        }
         camera: Camera {
             id: camera
 
             cameraDevice: mediaDevices.defaultVideoInput
         }
+
         videoOutput: videoOutput
     }
 
@@ -35,15 +39,16 @@ ApplicationWindow {
             anchors.fill: parent
             spacing: 6
 
+            signal startedRecording
+            signal stoppedRecording
+            signal captured
+
             RoundButton {
                 id: recordButton
                 Layout.alignment: Qt.AlignBottom | Qt.AlignHCenter
                 Layout.preferredWidth: 50
                 Layout.preferredHeight: 50
                 Layout.bottomMargin: 40
-
-                signal startedRecording
-                signal stoppedRecording
 
                 Image {
                     anchors.fill: parent
@@ -61,13 +66,13 @@ ApplicationWindow {
                 Layout.preferredHeight: 50
                 Layout.bottomMargin: 40
 
-                signal captured
-
                 Image {
                     anchors.fill: parent
                     source: "qrc:/images/capture-icon.png"
                     fillMode: Image.PreserveAspectFit
                 }
+
+                onClicked: captured
             }
         }
     }

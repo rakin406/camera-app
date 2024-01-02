@@ -48,6 +48,20 @@ ApplicationWindow {
                     fillMode: Image.PreserveAspectFit
                 }
             }
+
+            RoundButton {
+                id: captureButton
+                Layout.alignment: Qt.AlignBottom | Qt.AlignHCenter
+                Layout.preferredWidth: 50
+                Layout.preferredHeight: 50
+                Layout.bottomMargin: 40
+
+                Image {
+                    anchors.fill: parent
+                    source: "qrc:/images/capture-icon.png"
+                    fillMode: Image.PreserveAspectFit
+                }
+            }
         }
     }
 }

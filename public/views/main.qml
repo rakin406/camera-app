@@ -1,7 +1,6 @@
 import QtCore
 import QtQuick
 import QtQuick.Controls
-import QtQuick.Dialogs
 import QtQuick.Layouts
 import QtMultimedia
 
@@ -75,24 +74,22 @@ ApplicationWindow {
 
                 onClicked: {
                     imageCapture.capture()
-                    folderDialog.open()
-                }
 
-                FolderDialog {
-                    id: folderDialog
-                    currentFolder: StandardPaths.standardLocations(StandardPaths.PicturesLocation)[0]
-                    onAccepted: {
-                        var path = selectedFolder.toString();
+                    var path = StandardPaths.standardLocations(StandardPaths.PicturesLocation)[0].toString();
 
-                        // Remove prefixed "file://"
-                        path = path.replace(/^(file:\/{2})|(qrc:\/{2})|(http:\/{2})/,"");
+                    // Remove prefixed "file://"
+                    path = path.replace(/^(file:\/{2})|(qrc:\/{2})|(http:\/{2})/,"");
 
-                        // Unescape html codes like '%23' for '#'
-                        path = decodeURIComponent(path);
+                    // Unescape html codes like '%23' for '#'
+                    path = decodeURIComponent(path);
 
-                        // TODO: Specify file name.
-                        imageCapture.saveToFile(path)
-                    }
+                    // Get date time to use as file name
+                    const dateTime = new Date().toLocaleString();
+                    path = path.concat("/", dateTime, ".png");
+
+                    // BUG: QFSFileEngine::open: No file name specified,
+                            QFile::remove: Empty or null file name.
+                    imageCapture.saveToFile(path)
                 }
             }
         }
